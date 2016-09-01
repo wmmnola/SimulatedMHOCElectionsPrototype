@@ -2,6 +2,7 @@ __author__ = 'Wade'
 
 import random
 import math
+import time
 
 def distFrom(p1,p2):
     return math.sqrt(((p1.x-p2.x)**2)+((p1.y-p2.y)**2)+((p1.z-p2.z)**2))
@@ -42,10 +43,12 @@ class Voter(object):
 
 
 
+start = time.clock()
+numvoters = 1000
 voters = []
-parties = {"Right":[0,0,0],"Center":[50,50,50],"Left":[100,100,100]}
+parties = {"Right":[0,0,0],"Center":[50,50,50],"Left":[100,100,100],"Centre-Right Democrats":[25,25,50],"Centre-Left Syndicate":[75,75,100]}
 print("The Right's Party Score %s" % (parties["Right"][0]))
-for x in range(0,1000):
+for x in range(0,numvoters):
     dem = random.randint(0,100)
     soc = random.randint(0,100)
     econ = random.randint(0,100)
@@ -58,5 +61,10 @@ for x in parties:
     Tallied[x] = votes.count(x)
 print("Votes: ")
 print(Tallied)
+stop = time.clock()
+timespent = round(stop-start,2)
+print("That took %s seconds" %(timespent))
+
+print("The time per vote is %s seconds" % (timespent/numvoters))
 
 
